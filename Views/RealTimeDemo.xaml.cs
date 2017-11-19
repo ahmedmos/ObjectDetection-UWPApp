@@ -689,7 +689,7 @@ namespace IntelligentKioskSample.Views
                 //this.UpdateDemographics(e);
 
                 this.debugText.Text = string.Format("Latency: {0}ms", (int)(DateTime.Now - start).TotalMilliseconds);
-
+                this.ErrorText.Text = e.ErrorMessage;
                 this.isProcessingPhoto = false;
             }
             catch (Exception ex)
@@ -883,13 +883,23 @@ namespace IntelligentKioskSample.Views
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+            try
+            {
+                await FaceServiceHelper.DeletePersonAsync(groupid, persionID);
+                await this.ResetDemographicsData();
+            }
+            catch (Exception ex)
+            {
+                MessageDialog dialog = new MessageDialog("Please enter the FACE API Key in settings");
+               
+            }
             this.isProcessingLoopInProgress = false;
-            await FaceServiceHelper.DeletePersonAsync(groupid, persionID);
+          
             Constants.isHelmet = false;
             Window.Current.Activated -= CurrentWindowActivationStateChanged;
             this.cameraControl.CameraAspectRatioChanged -= CameraControl_CameraAspectRatioChanged;
 
-            await this.ResetDemographicsData();
+         
 
             await this.cameraControl.StopStreamAsync();
             base.OnNavigatingFrom(e);

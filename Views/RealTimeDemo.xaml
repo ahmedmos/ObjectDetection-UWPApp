@@ -85,9 +85,14 @@
                    
                     <Button Name="add"  Content="click" Click="add_Click"/>
                 </StackPanel>
-                <TextBlock Grid.Row="2" x:Name="debugText" Opacity="0.6" Margin="0,0,2,0"  HorizontalAlignment="Right" VerticalAlignment="Top" />
+              
               
             </Grid>
+            <StackPanel Grid.Row="2" Opacity="0.5" Margin="0,0,2,0" HorizontalAlignment="Right" VerticalAlignment="Top" Orientation="Vertical">
+                <TextBlock Grid.Row="2" x:Name="debugText" Opacity="0.6" Margin="0,0,2,0"  HorizontalAlignment="Right" VerticalAlignment="Top" />
+                <TextBlock Grid.Row="2" x:Name="ErrorText" Opacity="0.6" Margin="0,0,2,0"  HorizontalAlignment="Right" VerticalAlignment="Top" />
+
+            </StackPanel>
             <FlipView   FlowDirection="LeftToRight" >
                 
             </FlipView>

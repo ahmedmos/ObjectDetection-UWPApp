@@ -22,6 +22,7 @@ namespace IntelligentKioskSample.Helper
         public const string EmotionApi = "";
         public const string ComputerVision = "";
 
+        public static string ErrorMessage = "";
 
         public static string x;
         public static string y;

@@ -41,6 +41,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace ServiceHelpers
 {
     public class ImageAnalyzer
@@ -55,7 +56,7 @@ namespace ServiceHelpers
         public event EventHandler OcrAnalysisCompleted;
 
         public static string PeopleGroupsUserDataFilter = null;
-
+        public string ErrorMessage = "";
         public Func<Task<Stream>> GetImageStreamCallback { get; set; }
         public string LocalImagePath { get; set; }
         public string ImageUrl { get; set; }
@@ -138,7 +139,9 @@ namespace ServiceHelpers
 
                 if (this.ShowDialogOnFaceApiErrors)
                 {
-                    await ErrorTrackingHelper.GenericApiCallExceptionHandler(e, "Face detection failed.");
+                    //await ErrorTrackingHelper.GenericApiCallExceptionHandler(e, "Face detection failed.");
+                    ErrorMessage = e.Message + " - Face Detection Failed";
+               
                 }
             }
             finally
